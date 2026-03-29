@@ -4,6 +4,7 @@ import FaceMeshView from './components/FaceMeshView';
 import ThreeView, { ThreeViewHandle } from './components/ThreeView';
 import CalibrationWizard from './components/CalibrationWizard';
 import ShoeControlPanel from './components/ShoeControlPanel';
+import ModelUploader from './components/ModelUploader';
 import { HeadPose, HeadPoseTracker } from './utils/headPose';
 import { calibrationManager, CalibrationData } from './utils/calibration';
 
@@ -18,6 +19,7 @@ function App() {
   const [shoePosition, setShoePosition] = useState({ x: 0, y: -0.09, z: -0.03 });
   const [shoeScale, setShoeScale] = useState(0.071);
   const [shoeRotation, setShoeRotation] = useState({ x: 0, y: -0.628, z: 0 });
+  const [showUploader, setShowUploader] = useState(false);
   const headPoseTrackerRef = useRef(new HeadPoseTracker(0.3));
   const threeViewRef = useRef<ThreeViewHandle>(null);
 
@@ -145,6 +147,16 @@ function App() {
     }
   };
 
+  const handleModelLoad = useCallback((url: string) => {
+    if (threeViewRef.current) {
+      threeViewRef.current.loadModel(url);
+    }
+  }, []);
+
+  const toggleUploader = useCallback(() => {
+    setShowUploader(prev => !prev);
+  }, []);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       if (threeViewRef.current) {
@@ -184,6 +196,12 @@ function App() {
           initialPosition={shoePosition}
           initialScale={shoeScale}
           initialRotation={shoeRotation}
+        />
+
+        <ModelUploader
+          onModelLoad={handleModelLoad}
+          isCollapsed={!showUploader}
+          onToggle={toggleUploader}
         />
 
         <div className="absolute bottom-4 right-4 z-10 rounded-lg overflow-hidden shadow-2xl border-2 border-white">

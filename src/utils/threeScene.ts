@@ -54,7 +54,7 @@ export class ThreeSceneManager {
     this.createDebugHelpers();
   }
 
-  private loadShoeModel(): void {
+  private initLights(): void {
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
     this.scene.add(ambientLight);
 
@@ -65,7 +65,14 @@ export class ThreeSceneManager {
     const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.5);
     directionalLight2.position.set(-1, -1, 0.5);
     this.scene.add(directionalLight2);
+  }
 
+  private loadShoeModel(): void {
+    this.initLights();
+    this.loadModelFromUrl('/models/shoe.glb');
+  }
+
+  loadModelFromUrl(url: string): void {
     const dracoLoader = new DRACOLoader();
     dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.6/');
     dracoLoader.setDecoderConfig({ type: 'js' });
@@ -74,17 +81,37 @@ export class ThreeSceneManager {
     loader.setDRACOLoader(dracoLoader);
 
     loader.load(
-      '/models/shoe.glb',
+      url,
       (gltf) => {
+        if (this.model) {
+          this.scene.remove(this.model);
+          this.model.traverse((child) => {
+            if (child instanceof THREE.Mesh) {
+              child.geometry.dispose();
+              if (child.material instanceof THREE.Material) {
+                child.material.dispose();
+              }
+            }
+          });
+        }
+
         this.model = gltf.scene;
-        this.model.position.set(0, -0.09, -0.03);
-        this.model.rotation.set(0, -0.628, 0);
-        this.model.scale.set(0.071, 0.071, 0.071);
+
+        const box = new THREE.Box3().setFromObject(this.model);
+        const center = box.getCenter(new THREE.Vector3());
+        const size = box.getSize(new THREE.Vector3());
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const scaleFactor = 0.2 / maxDim;
+
+        this.model.scale.set(scaleFactor, scaleFactor, scaleFactor);
+        this.model.position.sub(center.multiplyScalar(scaleFactor));
+        this.model.position.y -= 0.05;
+
         this.scene.add(this.model);
       },
       undefined,
       (error) => {
-        console.error('Error loading shoe model:', error);
+        console.error('Error loading model:', error);
       }
     );
   }
