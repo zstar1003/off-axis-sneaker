@@ -45,22 +45,22 @@ const CalibrationWizard: React.FC<CalibrationWizardProps> = ({ onComplete, onSki
 
   const renderIntro = () => (
     <div className="space-y-6">
-      <h2 className="text-xl font-light text-white">Parallax Calibration</h2>
+      <h2 className="text-xl font-light text-white">视差校准</h2>
       <p className="text-gray-400 text-sm leading-relaxed">
-        To create the best head-tracked parallax effect, we need to calibrate your screen dimensions and viewing distance.
+        为了获得最佳的头部追踪视差效果，我们需要校准您的屏幕尺寸和观看距离。
       </p>
       <div className="space-y-3 text-sm text-gray-400">
         <div className="flex items-center gap-3">
           <Ruler className="w-4 h-4 text-orange-500" />
-          <span>Ruler or measuring tape</span>
+          <span>尺子或卷尺</span>
         </div>
         <div className="flex items-center gap-3">
           <Monitor className="w-4 h-4 text-orange-500" />
-          <span>Screen dimensions</span>
+          <span>屏幕尺寸</span>
         </div>
         <div className="flex items-center gap-3">
           <Eye className="w-4 h-4 text-orange-500" />
-          <span>Distance from screen</span>
+          <span>与屏幕的距离</span>
         </div>
       </div>
       <div className="flex gap-3 pt-2">
@@ -68,13 +68,13 @@ const CalibrationWizard: React.FC<CalibrationWizardProps> = ({ onComplete, onSki
           onClick={() => setStep('screen-size')}
           className="flex-1 bg-orange-500 hover:bg-orange-600 text-white py-2.5 px-4 rounded transition-colors text-sm"
         >
-          Start
+          开始
         </button>
         <button
           onClick={handleSkip}
           className="text-gray-400 hover:text-white py-2.5 px-4 rounded transition-colors text-sm"
         >
-          Skip
+          跳过
         </button>
       </div>
     </div>
@@ -82,9 +82,9 @@ const CalibrationWizard: React.FC<CalibrationWizardProps> = ({ onComplete, onSki
 
   const renderScreenSize = () => (
     <div className="space-y-6">
-      <h2 className="text-xl font-light text-white">Screen Dimensions</h2>
+      <h2 className="text-xl font-light text-white">屏幕尺寸</h2>
       <p className="text-gray-400 text-sm leading-relaxed">
-        Measure the visible screen area (not including bezels).
+        测量可见屏幕区域（不含边框）。
       </p>
 
       <div className="flex items-center gap-2">
@@ -105,7 +105,7 @@ const CalibrationWizard: React.FC<CalibrationWizardProps> = ({ onComplete, onSki
       <div className="space-y-4">
         <div>
           <label className="block text-xs text-gray-400 mb-2">
-            Width {useInches ? '(inches)' : '(cm)'}
+            宽度 {useInches ? '(英寸)' : '(厘米)'}
           </label>
           <input
             type="number"
@@ -124,7 +124,7 @@ const CalibrationWizard: React.FC<CalibrationWizardProps> = ({ onComplete, onSki
 
         <div>
           <label className="block text-xs text-gray-400 mb-2">
-            Height {useInches ? '(inches)' : '(cm)'}
+            高度 {useInches ? '(英寸)' : '(厘米)'}
           </label>
           <input
             type="number"
@@ -151,13 +151,13 @@ const CalibrationWizard: React.FC<CalibrationWizardProps> = ({ onComplete, onSki
           onClick={() => setStep('intro')}
           className="text-gray-400 hover:text-white py-2.5 px-4 rounded transition-colors text-sm"
         >
-          Back
+          上一步
         </button>
         <button
           onClick={() => setStep('viewing-distance')}
           className="flex-1 bg-orange-500 hover:bg-orange-600 text-white py-2.5 px-4 rounded transition-colors text-sm"
         >
-          Next
+          下一步
         </button>
       </div>
     </div>
@@ -165,14 +165,14 @@ const CalibrationWizard: React.FC<CalibrationWizardProps> = ({ onComplete, onSki
 
   const renderViewingDistance = () => (
     <div className="space-y-6">
-      <h2 className="text-xl font-light text-white">Viewing Distance</h2>
+      <h2 className="text-xl font-light text-white">观看距离</h2>
       <p className="text-gray-400 text-sm leading-relaxed">
-        Enter the typical distance between your eyes and the screen.
+        输入眼睛到屏幕的典型距离。
       </p>
 
       <div>
         <label className="block text-xs text-gray-400 mb-2">
-          Distance from Screen {useInches ? '(inches)' : '(cm)'}
+          与屏幕的距离 {useInches ? '(英寸)' : '(厘米)'}
         </label>
         <input
           type="number"
@@ -188,7 +188,7 @@ const CalibrationWizard: React.FC<CalibrationWizardProps> = ({ onComplete, onSki
           max="200"
         />
         <p className="mt-3 text-xs text-gray-500">
-          Typical: {useInches ? '20-24 in (laptop) / 24-32 in (desktop)' : '50-60 cm (laptop) / 60-80 cm (desktop)'}
+          典型: {useInches ? '20-24 英寸 (笔记本) / 24-32 英寸 (台式)' : '50-60 厘米 (笔记本) / 60-80 厘米 (台式)'}
         </p>
       </div>
 
@@ -197,13 +197,13 @@ const CalibrationWizard: React.FC<CalibrationWizardProps> = ({ onComplete, onSki
           onClick={() => setStep('screen-size')}
           className="text-gray-400 hover:text-white py-2.5 px-4 rounded transition-colors text-sm"
         >
-          Back
+          上一步
         </button>
         <button
           onClick={() => setStep('test')}
           className="flex-1 bg-orange-500 hover:bg-orange-600 text-white py-2.5 px-4 rounded transition-colors text-sm"
         >
-          Next
+          下一步
         </button>
       </div>
     </div>
@@ -211,19 +211,19 @@ const CalibrationWizard: React.FC<CalibrationWizardProps> = ({ onComplete, onSki
 
   const renderTest = () => (
     <div className="space-y-6">
-      <h2 className="text-xl font-light text-white">Test Your Setup</h2>
+      <h2 className="text-xl font-light text-white">测试您的设置</h2>
       <p className="text-gray-400 text-sm leading-relaxed">
-        Move your head around. The 3D scene should respond as if you're looking through a window.
+        移动您的头部。3D 场景应该像透过窗户一样响应。
       </p>
 
       <div className="space-y-2 text-xs text-gray-400">
-        <p>• Moving left reveals the right side</p>
-        <p>• Moving right reveals the left side</p>
-        <p>• Moving up/down changes vertical perspective</p>
+        <p>• 向左移动显示右侧</p>
+        <p>• 向右移动显示左侧</p>
+        <p>• 上下移动改变垂直视角</p>
       </div>
 
       <p className="text-xs text-orange-400">
-        Tip: Use fullscreen mode for the best experience
+        提示: 使用全屏模式可获得最佳体验
       </p>
 
       <div className="pt-2 border-t border-gray-800">
@@ -238,7 +238,7 @@ const CalibrationWizard: React.FC<CalibrationWizardProps> = ({ onComplete, onSki
           onClick={() => setStep('viewing-distance')}
           className="text-gray-400 hover:text-white py-2.5 px-4 rounded transition-colors text-sm"
         >
-          Adjust
+          调整
         </button>
         <button
           onClick={() => {
@@ -248,7 +248,7 @@ const CalibrationWizard: React.FC<CalibrationWizardProps> = ({ onComplete, onSki
           className="flex-1 bg-orange-500 hover:bg-orange-600 text-white py-2.5 px-4 rounded transition-colors flex items-center justify-center gap-2 text-sm"
         >
           <Check size={16} />
-          Complete
+          完成
         </button>
       </div>
     </div>

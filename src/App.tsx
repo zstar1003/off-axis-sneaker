@@ -19,7 +19,6 @@ function App() {
   const [shoePosition, setShoePosition] = useState({ x: 0, y: -0.09, z: -0.03 });
   const [shoeScale, setShoeScale] = useState(0.071);
   const [shoeRotation, setShoeRotation] = useState({ x: 0, y: -0.628, z: 0 });
-  const [showUploader, setShowUploader] = useState(false);
   const headPoseTrackerRef = useRef(new HeadPoseTracker(0.3));
   const threeViewRef = useRef<ThreeViewHandle>(null);
 
@@ -153,10 +152,6 @@ function App() {
     }
   }, []);
 
-  const toggleUploader = useCallback(() => {
-    setShowUploader(prev => !prev);
-  }, []);
-
   useEffect(() => {
     const timer = setTimeout(() => {
       if (threeViewRef.current) {
@@ -177,7 +172,7 @@ function App() {
         {!isCheckingCdn && !isCdnAvailable && (
           <div className="absolute top-4 left-4 right-4 z-30 max-w-2xl mx-auto p-3 bg-yellow-50 text-yellow-800 rounded-md">
             <p className="text-sm">
-              We're having trouble connecting to the required resources. Please check your internet connection.
+              无法连接到所需的资源。请检查您的网络连接。
             </p>
           </div>
         )}
@@ -200,8 +195,6 @@ function App() {
 
         <ModelUploader
           onModelLoad={handleModelLoad}
-          isCollapsed={!showUploader}
-          onToggle={toggleUploader}
         />
 
         <div className="absolute bottom-4 right-4 z-10 rounded-lg overflow-hidden shadow-2xl border-2 border-white">
@@ -214,8 +207,8 @@ function App() {
           <button
             onClick={toggleFullscreen}
             className="p-1.5 bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded transition-colors backdrop-blur-sm"
-            aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
-            title={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
+            aria-label={isFullscreen ? '退出全屏' : '进入全屏'}
+            title={isFullscreen ? '退出全屏' : '进入全屏'}
           >
             {isFullscreen ? <Minimize size={14} /> : <Maximize size={14} />}
           </button>
@@ -223,8 +216,8 @@ function App() {
           <button
             onClick={() => setShowCalibration(true)}
             className="p-1.5 bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded transition-colors backdrop-blur-sm"
-            aria-label="Calibration settings"
-            title="Calibration settings"
+            aria-label="校准设置"
+            title="校准设置"
           >
             <Settings size={14} />
           </button>
@@ -232,8 +225,8 @@ function App() {
           <button
             onClick={toggleDebugMode}
             className={`p-1.5 ${debugMode ? 'bg-blue-600' : 'bg-black bg-opacity-50'} hover:bg-opacity-70 text-white rounded transition-colors backdrop-blur-sm`}
-            aria-label="Toggle debug mode"
-            title="Toggle debug mode"
+            aria-label="切换调试模式"
+            title="切换调试模式"
           >
             <Bug size={14} />
           </button>

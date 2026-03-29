@@ -11,13 +11,13 @@ const CameraPermission: React.FC<CameraPermissionProps> = ({ onRequestAccess }) 
       <div className="flex flex-col items-center p-6 text-center">
         <Camera size={32} className="text-gray-600 mb-4" />
 
-        <h2 className="text-lg font-medium text-gray-800 mb-2">Camera Access Required</h2>
+        <h2 className="text-lg font-medium text-gray-800 mb-2">需要摄像头权限</h2>
 
         <button
           onClick={onRequestAccess}
           className="px-4 py-2 bg-gray-800 text-white font-medium rounded-md shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors"
         >
-          Allow Camera
+          允许访问摄像头
         </button>
       </div>
     </div>

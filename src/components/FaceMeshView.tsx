@@ -295,7 +295,7 @@ const FaceMeshView: React.FC<FaceMeshViewProps> = ({ onHeadPoseUpdate }) => {
           {isLoading && !cameraReady && (
             <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 z-30 text-white">
               <div className="text-center">
-                <p className="text-sm">Loading camera...</p>
+                <p className="text-sm">正在加载摄像头...</p>
               </div>
             </div>
           )}
@@ -303,20 +303,20 @@ const FaceMeshView: React.FC<FaceMeshViewProps> = ({ onHeadPoseUpdate }) => {
           {lastError && (
             <div className="absolute inset-0 flex items-center justify-center bg-red-500 bg-opacity-80 z-40 text-white p-2">
               <div className="text-center">
-                <p className="text-sm font-medium mb-2">Error</p>
+                <p className="text-xs">错误</p>
                 <p className="text-xs">{lastError}</p>
                 <div className="mt-2 flex gap-2 justify-center">
                   <button
                     className="px-2 py-1 text-xs bg-white text-red-600 font-medium rounded hover:bg-gray-100"
                     onClick={handleRetry}
                   >
-                    Retry
+                    重试
                   </button>
                   <button
                     className="px-2 py-1 text-xs bg-white text-red-600 font-medium rounded hover:bg-gray-100"
                     onClick={handleRefreshPage}
                   >
-                    Reload
+                    刷新
                   </button>
                 </div>
               </div>

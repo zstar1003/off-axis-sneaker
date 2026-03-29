@@ -52,8 +52,8 @@ const ShoeControlPanel: React.FC<ShoeControlPanelProps> = ({
         <button
           onClick={() => setIsCollapsed(false)}
           className="p-1.5 bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded transition-colors backdrop-blur-sm"
-          aria-label="Open shoe controls"
-          title="Shoe controls"
+          aria-label="打开控制面板"
+          title="模型控制"
         >
           <Sliders size={14} />
         </button>
@@ -63,7 +63,7 @@ const ShoeControlPanel: React.FC<ShoeControlPanelProps> = ({
             <button
               onClick={() => setIsCollapsed(true)}
               className="p-1.5 hover:bg-white hover:bg-opacity-10 rounded transition-colors"
-              aria-label="Close controls"
+              aria-label="关闭控制面板"
             >
               <Sliders size={14} />
             </button>
@@ -71,7 +71,7 @@ const ShoeControlPanel: React.FC<ShoeControlPanelProps> = ({
 
           <div className="space-y-3 px-4 pb-4">
             <div>
-              <label className="text-xs block mb-1">Position X: {position.x.toFixed(3)}</label>
+              <label className="text-xs block mb-1">X 位置: {position.x.toFixed(3)}</label>
               <input
                 type="range"
                 min="-1"
@@ -84,7 +84,7 @@ const ShoeControlPanel: React.FC<ShoeControlPanelProps> = ({
             </div>
 
             <div>
-              <label className="text-xs block mb-1">Position Y: {position.y.toFixed(3)}</label>
+              <label className="text-xs block mb-1">Y 位置: {position.y.toFixed(3)}</label>
               <input
                 type="range"
                 min="-1"
@@ -97,7 +97,7 @@ const ShoeControlPanel: React.FC<ShoeControlPanelProps> = ({
             </div>
 
             <div>
-              <label className="text-xs block mb-1">Position Z: {position.z.toFixed(3)}</label>
+              <label className="text-xs block mb-1">Z 位置: {position.z.toFixed(3)}</label>
               <input
                 type="range"
                 min="-2"
@@ -110,7 +110,7 @@ const ShoeControlPanel: React.FC<ShoeControlPanelProps> = ({
             </div>
 
             <div className="pt-2 border-t border-gray-600">
-              <label className="text-xs block mb-1">Scale: {scale.toFixed(3)}</label>
+              <label className="text-xs block mb-1">缩放: {scale.toFixed(3)}</label>
               <input
                 type="range"
                 min="0.01"
@@ -123,7 +123,7 @@ const ShoeControlPanel: React.FC<ShoeControlPanelProps> = ({
             </div>
 
             <div className="pt-2 border-t border-gray-600">
-              <label className="text-xs block mb-1">Rotation: {(rotation.y * 180 / Math.PI).toFixed(0)}°</label>
+              <label className="text-xs block mb-1">旋转: {(rotation.y * 180 / Math.PI).toFixed(0)}°</label>
               <input
                 type="range"
                 min={-Math.PI}
