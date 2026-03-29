@@ -80,8 +80,13 @@ export class ThreeSceneManager {
     const loader = new GLTFLoader();
     loader.setDRACOLoader(dracoLoader);
 
+    const basePath = import.meta.env.BASE_URL;
+    const fullUrl = (url.startsWith('/') && !url.startsWith('blob:')) 
+      ? `${basePath}${url.slice(1)}` 
+      : url;
+
     loader.load(
-      url,
+      fullUrl,
       (gltf) => {
         if (this.model) {
           this.scene.remove(this.model);
